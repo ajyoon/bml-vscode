@@ -1,0 +1,28 @@
+{
+    "name": "bml-vscode",
+    "displayName": "Blur Markup Language (BML)",
+    "description": "Blur Markup Language (BML) Support",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.62.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "bml",
+            "aliases": ["BML", "bml"],
+            "extensions": [".bml"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "bml",
+            "scopeName": "source.bml",
+            "path": "./syntaxes/bml.tmLanguage.json",
+            "embeddedLanguages": {
+                "source.js": "javascript"
+            }
+        }]
+    }
+}
