@@ -9,6 +9,13 @@
     "categories": [
         "Programming Languages"
     ],
+    "dependencies": {
+        "bml": "0.0.21"
+    },
+	"activationEvents": [
+		"onCommand:extension.runBml"
+	],
+	"main": "./extension.js",			
     "contributes": {
         "languages": [{
             "id": "bml",
@@ -24,10 +31,10 @@
                 "source.js": "javascript",
                 "source.regexp.bml": "bml regexp"
             }
-        }, {
-            "language": "bml-regexp",
-            "scopeName": "source.regexp.bml",
-            "path": "./syntaxes/bmlRegexp.tmLanguage.json"
+        }],
+		"commands": [{
+				"command": "extension.runBml",
+				"title": "Run BML"
         }]
     }
 }

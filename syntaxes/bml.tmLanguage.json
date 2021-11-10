@@ -155,16 +155,48 @@
           "name": "keyword.control"
         }
       },
-      "patterns": [{"include": "#rule"}]
+      "patterns": [
+        {
+          "include": "#rule"
+        }
+      ]
     },
     "rule": {
-      "patterns": [{"include": "#regexMatcher"}]
+      "patterns": [
+        {
+          "include": "#regexMatcher"
+        },
+        {
+          "include": "#replacer"
+        },
+        {
+          "include": "#callCommand"
+        },
+        {
+          "include": "#number"
+        },
+        {
+          "include": "#as"
+        },
+        {
+          "include": "#comma"
+        }
+      ]
     },
     "regexMatcher": {
       "name": "keyword.control",
-      "begin": "r(\\()",
-      "end": "(\\))",
-      "patterns": [{"include": "source.regexp.bml"}]
+      "contentName": "string.regexp",
+      "begin": "(/)",
+      "end": "(/)",
+      "patterns": [
+        {
+          "match": "\\/"
+        }
+      ]
+    },
+    "as": {
+      "name": "keyword.bml",
+      "match": "\\bas\\b"
     }
   },
   "scopeName": "source.bml"
