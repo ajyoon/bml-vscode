@@ -13,6 +13,9 @@
           "include": "#eval"
         },
         {
+          "include": "#mode"
+        },
+        {
           "include": "#commands"
         }
       ]
@@ -33,6 +36,9 @@
       "patterns": [
         {
           "include": "#callCommand"
+        },
+        {
+          "include": "#useCommand"
         },
         {
           "include": "#number"
@@ -75,8 +81,21 @@
     },
     "eval": {
       "name": "keyword.bml",
-      "begin": "eval\\s*\\{",
-      "end": "\\}",
+      "begin": "(eval)\\s*(\\{)",
+      "end": "(\\})",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.bml"
+        },
+        "2": {
+          "name": "keyword.control"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "keyword.control"
+        }
+      },
       "patterns": [
         {
           "include": "source.js"
@@ -107,6 +126,45 @@
     "choiceName": {
       "name": "entity.name.function",
       "match": "[@#]?(\\w+):"
+    },
+    "useCommand": {
+      "name": "keyword.bml",
+      "match": "use\\s+(\\w+)",
+      "captures": {
+        "1": {
+          "name": "entity.name.type"
+        }
+      }
+    },
+    "mode": {
+      "begin": "(mode)\\s+(\\w+)\\s*(\\{)",
+      "end": "(\\})",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.bml"
+        },
+        "2": {
+          "name": "entity.name.type"
+        },
+        "3": {
+          "name": "keyword.control"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "keyword.control"
+        }
+      },
+      "patterns": [{"include": "#rule"}]
+    },
+    "rule": {
+      "patterns": [{"include": "#regexMatcher"}]
+    },
+    "regexMatcher": {
+      "name": "keyword.control",
+      "begin": "r(\\()",
+      "end": "(\\))",
+      "patterns": [{"include": "source.regexp.bml"}]
     }
   },
   "scopeName": "source.bml"

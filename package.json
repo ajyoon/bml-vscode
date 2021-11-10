@@ -21,8 +21,13 @@
             "scopeName": "source.bml",
             "path": "./syntaxes/bml.tmLanguage.json",
             "embeddedLanguages": {
-                "source.js": "javascript"
+                "source.js": "javascript",
+                "source.regexp.bml": "bml regexp"
             }
+        }, {
+            "language": "bml-regexp",
+            "scopeName": "source.regexp.bml",
+            "path": "./syntaxes/bmlRegexp.tmLanguage.json"
         }]
     }
 }
