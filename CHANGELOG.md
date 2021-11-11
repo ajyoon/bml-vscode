@@ -1,9 +1,6 @@
-# Change Log
+# Changelog
 
-All notable changes to the "bml-vscode" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-
-- Initial release
+## 0.0.1
+* Initial release
+* Add syntax highlighting
+* Add basic "Run BML" command, which sends the active file to a BML `0.0.21` interpreter.
