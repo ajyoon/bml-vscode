@@ -1,40 +1,57 @@
 {
-    "name": "bml-vscode",
-    "displayName": "Blur Markup Language (BML)",
-    "description": "Blur Markup Language (BML) Support",
-    "version": "0.0.1",
-    "engines": {
-        "vscode": "^1.62.0"
-    },
-    "categories": [
-        "Programming Languages"
+  "name": "bml-vscode",
+  "displayName": "Blur Markup Language (BML)",
+  "description": "Blur Markup Language (BML) Support",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.62.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "dependencies": {
+    "bml": "0.0.21"
+  },
+  "activationEvents": [
+    "onCommand:extension.runBml"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "bml",
+        "aliases": [
+          "BML"
+        ],
+        "extensions": [
+          ".bml"
+        ],
+        "configuration": "./language-configuration.json"
+      }
     ],
-    "dependencies": {
-        "bml": "0.0.21"
-    },
-	"activationEvents": [
-		"onCommand:extension.runBml"
-	],
-	"main": "./extension.js",			
-    "contributes": {
-        "languages": [{
-            "id": "bml",
-            "aliases": ["BML", "bml"],
-            "extensions": [".bml"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "bml",
-            "scopeName": "source.bml",
-            "path": "./syntaxes/bml.tmLanguage.json",
-            "embeddedLanguages": {
-                "source.js": "javascript",
-                "source.regexp.bml": "bml regexp"
-            }
-        }],
-		"commands": [{
-				"command": "extension.runBml",
-				"title": "Run BML"
-        }]
+    "grammars": [
+      {
+        "language": "bml",
+        "scopeName": "source.bml",
+        "path": "./syntaxes/bml.tmLanguage.json",
+        "embeddedLanguages": {
+          "source.js": "javascript"
+        }
+      }
+    ],
+    "commands": [
+      {
+        "command": "extension.runBml",
+        "title": "Run BML"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "extension.runBml",
+          "when": "editorLangId == bml"
+        }
+      ]
     }
+  }
 }

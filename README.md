@@ -3,7 +3,7 @@
 This extension provides basic language support for the stochastic
 markup language BML. Currently it provides syntax highlighting for
 `.bml` files and a convenient "Run BML" command which executes the
-active file.
+active BML file.
 
 ## Requirements
 
