@@ -35,6 +35,9 @@
       },
       "patterns": [
         {
+          "include": "#replacer"
+        },
+        {
           "include": "#callCommand"
         },
         {
@@ -51,9 +54,6 @@
         },
         {
           "include": "#choiceName"
-        },
-        {
-          "include": "#replacer"
         }
       ]
     },
@@ -125,7 +125,7 @@
     },
     "choiceName": {
       "name": "entity.name.function.bml",
-      "match": "[@#]?(\\w+):"
+      "match": "[@#]?(\\w+):?"
     },
     "useCommand": {
       "name": "keyword.bml",
