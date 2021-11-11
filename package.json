@@ -1,8 +1,13 @@
 {
   "name": "bml-vscode",
+  "publisher": "bml-lang",
   "displayName": "Blur Markup Language (BML)",
   "description": "Blur Markup Language (BML) Support",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ajyoon/bml-vscode.git"
+  },
   "engines": {
     "vscode": "^1.62.0"
   },
