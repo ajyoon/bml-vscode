@@ -18,7 +18,8 @@
     "bml": "0.0.22"
   },
   "activationEvents": [
-    "onCommand:extension.runBml"
+    "onCommand:extension.runBml",
+    "onCommand:extension.createInlineChoice"
   ],
   "main": "./extension.js",
   "contributes": {
@@ -48,6 +49,10 @@
       {
         "command": "extension.runBml",
         "title": "Run BML"
+      },
+      {
+        "command": "extension.createInlineChoice",
+        "title": "Create Inline Choice"
       }
     ],
     "menus": {
@@ -55,8 +60,18 @@
         {
           "command": "extension.runBml",
           "when": "editorLangId == bml"
+        },
+        {
+          "command": "extension.createInlineChoice",
+          "when": "editorLangId == bml"
         }
       ]
-    }
+    },
+    "snippets": [
+      {
+        "language": "bml",
+        "path": "./snippets.json"
+      }
+    ]
   }
 }

@@ -3,19 +3,16 @@
 const vscode = require('vscode');
 const bml = require('bml');
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
-
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
     let bmlOutput;
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('extension.runBml', () => {
+    // The command has been defined in the package.json file
+    // Now provide the implementation of the command with  registerCommand
+    // The commandId parameter must match the command field in package.json
+    context.subscriptions.push(vscode.commands.registerCommand('extension.runBml', () => {
         if (!bmlOutput) {
             bmlOutput = vscode.window.createOutputChannel("BML");
         }
@@ -28,16 +25,27 @@ function activate(context) {
         let result = bml(doc.getText());
 
         bmlOutput.append(result);
-	});
+    }));
 
-	context.subscriptions.push(disposable);
+    context.subscriptions.push(
+        vscode.commands.registerTextEditorCommand('extension.createInlineChoice', createInlineChoice));
+}
+
+function createInlineChoice(editor, edit, args) {
+    let snippet;
+    if (editor.selection.isEmpty) {
+        snippet = new vscode.SnippetString(`{($1), ($0)}`);
+    } else {
+        snippet = new vscode.SnippetString(`{($TM_SELECTED_TEXT), ($0)}`);
+    }
+    editor.insertSnippet(snippet);
 }
 
 // this method is called when your extension is deactivated
-function deactivate() {}
+function deactivate() { }
 
 // eslint-disable-next-line no-undef
 module.exports = {
-	activate,
-	deactivate
+    activate,
+    deactivate
 }
