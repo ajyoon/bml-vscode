@@ -47,6 +47,9 @@
           "include": "#callCommand"
         },
         {
+          "include": "#match"
+        },
+        {
           "include": "#useCommand"
         },
         {
@@ -173,13 +176,10 @@
           "include": "#regexMatcher"
         },
         {
+          "include": "#commands"
+        },
+        {
           "include": "#replacer"
-        },
-        {
-          "include": "#callCommand"
-        },
-        {
-          "include": "#number"
         },
         {
           "include": "#as"
@@ -217,6 +217,10 @@
     "as": {
       "name": "keyword.bml",
       "match": "\\bas\\b"
+    },
+    "match": {
+      "name": "keyword.bml",
+      "match": "\\bmatch\\b"
     },
     "escape": {
       "name": "keyword.bml",
