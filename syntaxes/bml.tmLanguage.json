@@ -23,6 +23,12 @@
         },
         {
           "include": "#commands"
+        },
+        {
+          "include": "#lineComment"
+        },
+        {
+          "include": "#blockComment"
         }
       ]
     },
@@ -63,6 +69,12 @@
         },
         {
           "include": "#choiceName"
+        },
+        {
+          "include": "#lineComment"
+        },
+        {
+          "include": "#blockComment"
         }
       ]
     },
@@ -118,7 +130,15 @@
         "1": {
           "name": "entity.name.function.bml"
         }
-      }
+      },
+      "patterns": [
+        {
+          "include": "#lineComment"
+        },
+        {
+          "include": "#blockComment"
+        }
+      ]
     },
     "number": {
       "name": "constant.numeric.bml",
@@ -143,7 +163,15 @@
         "1": {
           "name": "entity.name.type.bml"
         }
-      }
+      },
+      "patterns": [
+        {
+          "include": "#lineComment"
+        },
+        {
+          "include": "#blockComment"
+        }
+      ]
     },
     "mode": {
       "begin": "(?<!\\\\)(mode)\\s+(\\w+)\\s*(\\{)",
@@ -167,6 +195,12 @@
       "patterns": [
         {
           "include": "#rule"
+        },
+        {
+          "include": "#lineComment"
+        },
+        {
+          "include": "#blockComment"
         }
       ]
     },
@@ -186,6 +220,12 @@
         },
         {
           "include": "#comma"
+        },
+        {
+          "include": "#lineComment"
+        },
+        {
+          "include": "#blockComment"
         }
       ]
     },
@@ -199,6 +239,15 @@
           "match": "\\/"
         }
       ]
+    },
+    "lineComment": {
+      "name": "comment.line.bml",
+      "match": "//.*"
+    },
+    "blockComment": {
+      "name": "comment.block.bml",
+      "begin": "/\\*",
+      "end": "\\*/"
     },
     "literalBlock": {
       "begin": "(?<!\\\\)(\\[\\[)",
