@@ -216,7 +216,7 @@
           "include": "#replacer"
         },
         {
-          "include": "#as"
+          "include": "#arrow"
         },
         {
           "include": "#comma"
@@ -262,10 +262,6 @@
           "name": "keyword.bml"
         }
       }
-    },
-    "as": {
-      "name": "keyword.bml",
-      "match": "\\bas\\b"
     },
     "match": {
       "name": "keyword.bml",

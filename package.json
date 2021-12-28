@@ -3,7 +3,7 @@
   "publisher": "bml-lang",
   "displayName": "Blur Markup Language (BML)",
   "description": "Blur Markup Language (BML) Support",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "repository": {
     "type": "git",
     "url": "https://github.com/ajyoon/bml-vscode.git"
@@ -15,7 +15,7 @@
     "Programming Languages"
   ],
   "dependencies": {
-    "bml": "0.0.32"
+    "bml": "0.0.33"
   },
   "activationEvents": [
     "onCommand:extension.runBml",
