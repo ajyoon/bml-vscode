@@ -53,7 +53,7 @@
           "include": "#callCommand"
         },
         {
-          "include": "#match"
+          "include": "#kwMatch"
         },
         {
           "include": "#useCommand"
@@ -194,13 +194,13 @@
       },
       "patterns": [
         {
-          "include": "#rule"
-        },
-        {
           "include": "#lineComment"
         },
         {
           "include": "#blockComment"
+        },
+        {
+          "include": "#rule"
         }
       ]
     },
@@ -263,7 +263,7 @@
         }
       }
     },
-    "match": {
+    "kwMatch": {
       "name": "keyword.bml",
       "match": "\\bmatch\\b"
     },
