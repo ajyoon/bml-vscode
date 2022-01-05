@@ -242,7 +242,7 @@
     },
     "lineComment": {
       "name": "comment.line.bml",
-      "match": "//.*"
+      "match": "((?<=\\s)//|//(?=\\s)).*"
     },
     "blockComment": {
       "name": "comment.block.bml",
