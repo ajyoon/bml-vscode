@@ -16,13 +16,7 @@
           "include": "#literalBlock"
         },
         {
-          "include": "#eval"
-        },
-        {
-          "include": "#mode"
-        },
-        {
-          "include": "#commands"
+          "include": "#fork"
         },
         {
           "include": "#lineComment"
@@ -32,7 +26,7 @@
         }
       ]
     },
-    "commands": {
+    "fork": {
       "begin": "(?<!\\\\)(\\{)",
       "end": "(\\})",
       "beginCaptures": {
@@ -47,16 +41,13 @@
       },
       "patterns": [
         {
-          "include": "#replacer"
+          "include": "#textBranch"
         },
         {
-          "include": "#callCommand"
+          "include": "#eval"
         },
         {
-          "include": "#kwMatch"
-        },
-        {
-          "include": "#useCommand"
+          "include": "#fork"
         },
         {
           "include": "#number"
@@ -68,7 +59,7 @@
           "include": "#arrow"
         },
         {
-          "include": "#choiceName"
+          "include": "#choiceId"
         },
         {
           "include": "#lineComment"
@@ -78,7 +69,7 @@
         }
       ]
     },
-    "replacer": {
+    "textBranch": {
       "name": "punctuation.bml",
       "contentName": "text.markup.bml",
       "begin": "(\\()",
@@ -102,13 +93,10 @@
     },
     "eval": {
       "name": "keyword.bml",
-      "begin": "(?<!\\\\)(eval)\\s*(\\{)",
-      "end": "(\\})",
+      "begin": "(?<!\\\\)(\\[)",
+      "end": "(\\])",
       "beginCaptures": {
         "1": {
-          "name": "keyword.bml"
-        },
-        "2": {
           "name": "keyword.control.bml"
         }
       },
@@ -120,23 +108,6 @@
       "patterns": [
         {
           "include": "source.js"
-        }
-      ]
-    },
-    "callCommand": {
-      "name": "keyword.bml",
-      "match": "call\\s+([_$a-zA-Z\\xA0-\\uFFFF][_$a-zA-Z0-9\\xA0-\\uFFFF]*)",
-      "captures": {
-        "1": {
-          "name": "string.bml"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#lineComment"
-        },
-        {
-          "include": "#blockComment"
         }
       ]
     },
@@ -152,93 +123,9 @@
       "name": "keyword.control.bml",
       "match": "->"
     },
-    "choiceName": {
+    "choiceId": {
       "name": "string.bml",
       "match": "[@#]?(\\w+):?"
-    },
-    "useCommand": {
-      "name": "keyword.bml",
-      "match": "use\\s+(\\w+)",
-      "captures": {
-        "1": {
-          "name": "entity.name.type.bml"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#lineComment"
-        },
-        {
-          "include": "#blockComment"
-        }
-      ]
-    },
-    "mode": {
-      "begin": "(?<!\\\\)(mode)\\s+(\\w+)\\s*(\\{)",
-      "end": "(\\})",
-      "beginCaptures": {
-        "1": {
-          "name": "keyword.bml"
-        },
-        "2": {
-          "name": "entity.name.type.bml"
-        },
-        "3": {
-          "name": "keyword.control.bml"
-        }
-      },
-      "endCaptures": {
-        "1": {
-          "name": "keyword.control.bml"
-        }
-      },
-      "patterns": [
-        {
-          "include": "#lineComment"
-        },
-        {
-          "include": "#blockComment"
-        },
-        {
-          "include": "#rule"
-        }
-      ]
-    },
-    "rule": {
-      "patterns": [
-        {
-          "include": "#regexMatcher"
-        },
-        {
-          "include": "#commands"
-        },
-        {
-          "include": "#replacer"
-        },
-        {
-          "include": "#arrow"
-        },
-        {
-          "include": "#comma"
-        },
-        {
-          "include": "#lineComment"
-        },
-        {
-          "include": "#blockComment"
-        }
-      ]
-    },
-    "regexMatcher": {
-      "name": "keyword.control.bml",
-      "contentName": "string.regexp.bml",
-      "begin": "(/)",
-      "end": "(/)",
-      "patterns": [
-        {
-          "match": "\\/"
-        }
-      ]
     },
     "lineComment": {
       "name": "comment.line.bml",
@@ -252,20 +139,17 @@
     "literalBlock": {
       "begin": "(?<!\\\\)(\\[\\[)",
       "end": "(?<!\\\\)(\\]\\])",
+      "name": "text.markup.bml",
       "beginCaptures": {
         "1": {
-          "name": "keyword.bml"
+          "name": "string.bml"
         }
       },
       "endCaptures": {
         "1": {
-          "name": "keyword.bml"
+          "name": "string.bml"
         }
       }
-    },
-    "kwMatch": {
-      "name": "keyword.bml",
-      "match": "\\bmatch\\b"
     },
     "escape": {
       "name": "keyword.bml",
