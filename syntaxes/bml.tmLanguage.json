@@ -125,7 +125,7 @@
     },
     "choiceId": {
       "name": "string.bml",
-      "match": "[@#]?(\\w+):?"
+      "match": "(@|#|@!|)(\\w+):?"
     },
     "lineComment": {
       "name": "comment.line.bml",
