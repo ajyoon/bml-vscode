@@ -15,7 +15,7 @@
     "Programming Languages"
   ],
   "dependencies": {
-    "bml": "0.1.7"
+    "bml": "0.1.8"
   },
   "activationEvents": [
     "onCommand:extension.runBml",
