@@ -19,7 +19,8 @@
   },
   "activationEvents": [
     "onCommand:extension.runBml",
-    "onCommand:extension.createInlineChoice"
+    "onCommand:extension.createInlineChoice",
+    "onCommand:extension.referenceSelectedFork"
   ],
   "main": "./extension.js",
   "contributes": {
@@ -53,6 +54,10 @@
       {
         "command": "extension.createInlineChoice",
         "title": "Create Inline Choice"
+      },
+      {
+        "command": "extension.referenceSelectedFork",
+        "title": "Reference the selected fork"
       }
     ],
     "menus": {
@@ -63,6 +68,10 @@
         },
         {
           "command": "extension.createInlineChoice",
+          "when": "editorLangId == bml"
+        },
+        {
+          "command": "extension.referenceSelectedFork",
           "when": "editorLangId == bml"
         }
       ]
