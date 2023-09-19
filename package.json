@@ -73,6 +73,10 @@
       {
         "command": "bml-vscode.referenceSelectedFork",
         "title": "BML: Reference the selected fork"
+      },
+      {
+        "command": "bml-vscode.nextBranch",
+        "title": "BML: Create next branch"
       }
     ],
     "menus": {
@@ -87,6 +91,10 @@
         },
         {
           "command": "bml-vscode.referenceSelectedFork",
+          "when": "editorLangId == bml"
+        },
+        {
+          "command": "bml-vscode.nextBranch",
           "when": "editorLangId == bml"
         }
       ]

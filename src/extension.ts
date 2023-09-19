@@ -29,6 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	vscode.commands.registerTextEditorCommand('bml-vscode.createInlineChoice', createInlineChoice);
 	vscode.commands.registerTextEditorCommand('bml-vscode.referenceSelectedFork', referenceSelectedFork);
+	vscode.commands.registerTextEditorCommand('bml-vscode.nextBranch', nextBranch);
 }
 
 function createInlineChoice(editor: vscode.TextEditor, edit: vscode.TextEditorEdit, args: any[]) {
@@ -68,7 +69,7 @@ function referenceSelectedFork(editor: vscode.TextEditor, edit: vscode.TextEdito
 	}
 	output = output.replace(originalPrefix, '@');
 	output = `{${prefix}${id}2: ${output}}`;
-	edit.insert(selection.end, '\n' + output);
+	// edit.insert(selection.end, '\n' + output);
 	// Replace the selection with the dummy "2" for easy replacement
 	// disabled ATM because I couldn't get it to work
 	// let offset = output.indexOf('2');
@@ -76,10 +77,53 @@ function referenceSelectedFork(editor: vscode.TextEditor, edit: vscode.TextEdito
 	// let selectionEnd = selectionStart.translate(0, 1);
 	// console.log(offset, selectionStart, selectionEnd);
 	// editor.selection = new vscode.Selection(selectionStart, selectionEnd);
+	editor.edit((editBuilder) => {
+		editBuilder.insert(selection.end, '\n' + output);
+	}).then(success => {
+		if (success) {
+			let offset = output.indexOf('2');
+			let selectionStart = selection.end.translate(1, 0).with(undefined, offset);
+			let selectionEnd = selectionStart.translate(0, 1);
+			// This doesn't seem to gel with VSCodeVim, but it seems it may not be avoidable
+			// https://github.com/VSCodeVim/Vim/issues/1806
+			editor.selection = new vscode.Selection(selectionStart, selectionEnd);
+		}
+	});
+}
+
+function findNextMatchingChar(editor: vscode.TextEditor, character: string): vscode.Position | null {
+	const document = editor.document;
+	const cursorPosition = editor.selection.active;
+
+	for (let lineIdx = cursorPosition.line; lineIdx < document.lineCount; lineIdx++) {
+		const lineText = document.lineAt(lineIdx).text;
+		const startCharacter = (lineIdx === cursorPosition.line) ? cursorPosition.character : 0;
+
+		for (let charIdx = startCharacter; charIdx < lineText.length; charIdx++) {
+			if (lineText[charIdx] === character) {
+				return new vscode.Position(lineIdx, charIdx);
+			}
+		}
+	}
+	return null;
 }
 
 function nextBranch(editor: vscode.TextEditor, edit: vscode.TextEditorEdit, args: any[]) {
-	let selection = editor.selection;
+	let closeParenPos = findNextMatchingChar(editor, ')');
+	if (closeParenPos === null) {
+		vscode.window.showInformationMessage("Can't find end of branch");
+		return;
+	}
+	// For now, just insert a new branch.
+	// Later on this can be extended to search for a next branch and seek to it if found
+	editor.edit((editBuilder) => {
+		editBuilder.insert(closeParenPos!.translate(0, 1), ', ()');
+	}).then(success => {
+		if (success) {
+			let cursorPos = closeParenPos!.translate(0, 4);
+			editor.selection = new vscode.Selection(cursorPos, cursorPos);
+		}
+	});
 }
 
 // this method is called when your extension is deactivated
