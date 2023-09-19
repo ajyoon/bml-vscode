@@ -9,20 +9,35 @@
     "url": "https://github.com/ajyoon/bml-vscode.git"
   },
   "engines": {
-    "vscode": "^1.62.0"
+    "vscode": "^1.75.0"
   },
   "categories": [
     "Programming Languages"
   ],
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.82.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
+    "eslint": "^8.47.0",
+    "glob": "^10.3.3",
+    "mocha": "^10.2.0",
+    "typescript": "^5.1.6",
+    "@vscode/test-electron": "^2.3.4"
+  },
   "dependencies": {
     "bml": "0.1.8"
   },
-  "activationEvents": [
-    "onCommand:extension.runBml",
-    "onCommand:extension.createInlineChoice",
-    "onCommand:extension.referenceSelectedFork"
-  ],
-  "main": "./extension.js",
+  "main": "./out/extension.js",
   "contributes": {
     "languages": [
       {
@@ -48,30 +63,30 @@
     ],
     "commands": [
       {
-        "command": "extension.runBml",
-        "title": "Run BML"
+        "command": "bml-vscode.runBml",
+        "title": "BML: Run file"
       },
       {
-        "command": "extension.createInlineChoice",
-        "title": "Create Inline Choice"
+        "command": "bml-vscode.createInlineChoice",
+        "title": "BML: Create Inline Choice"
       },
       {
-        "command": "extension.referenceSelectedFork",
-        "title": "Reference the selected fork"
+        "command": "bml-vscode.referenceSelectedFork",
+        "title": "BML: Reference the selected fork"
       }
     ],
     "menus": {
       "commandPalette": [
         {
-          "command": "extension.runBml",
+          "command": "bml-vscode.runBml",
           "when": "editorLangId == bml"
         },
         {
-          "command": "extension.createInlineChoice",
+          "command": "bml-vscode.createInlineChoice",
           "when": "editorLangId == bml"
         },
         {
-          "command": "extension.referenceSelectedFork",
+          "command": "bml-vscode.referenceSelectedFork",
           "when": "editorLangId == bml"
         }
       ]
