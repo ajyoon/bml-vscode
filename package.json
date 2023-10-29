@@ -36,7 +36,7 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "bml": "0.1.8"
+    "bml": "0.1.9"
   },
   "main": "./out/extension.js",
   "contributes": {
