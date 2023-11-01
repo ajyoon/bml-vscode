@@ -45,8 +45,8 @@ function createInlineChoice(editor: vscode.TextEditor, edit: vscode.TextEditorEd
 	editor.insertSnippet(snippet);
 }
 
-const ID_RE = /{([#$@!]*)([_a-zA-Z\xA0-\uFFFF]?[_a-zA-Z0-9\xA0-\uFFFF]+)[:}]/;
-const ID_RE_FULL_STRING = /^{([#$@!]*)([_a-zA-Z\xA0-\uFFFF]?[_a-zA-Z0-9\xA0-\uFFFF]+)[:}]$/;
+const ID_RE = /{([#$@!]*)([_a-zA-Z\xA0-\uFFFF][_a-zA-Z0-9\xA0-\uFFFF]*)[:}]/;
+const ID_RE_FULL_STRING = /^{([#$@!]*)([_a-zA-Z\xA0-\uFFFF][_a-zA-Z0-9\xA0-\uFFFF]*)[:}]$/;
 
 function referenceSelectedFork(editor: vscode.TextEditor, edit: vscode.TextEditorEdit, args: any[]) {
 	let selection = editor.selection;
