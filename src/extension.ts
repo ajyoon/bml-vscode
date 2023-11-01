@@ -45,8 +45,8 @@ function createInlineChoice(editor: vscode.TextEditor, edit: vscode.TextEditorEd
 	editor.insertSnippet(snippet);
 }
 
-const ID_RE = /{([#$@!]*)([_a-zA-Z\xA0-\uFFFF][_a-zA-Z0-9\xA0-\uFFFF]+)[:}]/;
-const ID_RE_FULL_STRING = /^{([#$@!]*)([_a-zA-Z\xA0-\uFFFF][_a-zA-Z0-9\xA0-\uFFFF]+)[:}]$/;
+const ID_RE = /{([#$@!]*)([_a-zA-Z\xA0-\uFFFF]?[_a-zA-Z0-9\xA0-\uFFFF]+)[:}]/;
+const ID_RE_FULL_STRING = /^{([#$@!]*)([_a-zA-Z\xA0-\uFFFF]?[_a-zA-Z0-9\xA0-\uFFFF]+)[:}]$/;
 
 function referenceSelectedFork(editor: vscode.TextEditor, edit: vscode.TextEditorEdit, args: any[]) {
 	let selection = editor.selection;
@@ -201,7 +201,7 @@ class BMLRenameProvider implements vscode.RenameProvider {
 	async prepareRename(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken): Promise<vscode.Range | { placeholder: string, range: vscode.Range }> {
 		let selectRefResult = selectRefId(document, position);
 		if (selectRefResult === null) {
-			return Promise.reject();
+			return Promise.reject('Renaming is not supported here');
 		}
 		let [id, replaceRange] = selectRefResult;
 		return { placeholder: id, range: replaceRange };
